@@ -19,6 +19,5 @@ router.post("/login", passport.authenticate("local"), function(req, res){
 });
 router.get("/logout", function(req, res){
    req.logout();
-   res.redirect("/campgrounds");
 });
 module.exports = router;
