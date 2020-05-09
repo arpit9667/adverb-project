@@ -16,4 +16,4 @@ heroku link for various process:
                 https://white-panda-assignment.herokuapp.com/updatecar
 
 
-                ![Alt text](http:/C:\Users\akhil\OneDrive\Desktop/Capture.PNG "Optional title")
+                ![Alt text](http://C:\Users\akhil\OneDrive\Desktop/Capture.PNG "Optional title")
