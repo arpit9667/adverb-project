@@ -39,6 +39,7 @@ router.post("/bookSpecific",middleware.authentication,function(req,res){
 					{
 						Book.find(
 							{
+								
 								$or:[
 									{$and:[{issueDate:{$lte:customer.issueDate}},
 											{returnDate:{$gte:customer.returnDate}}]},
@@ -46,7 +47,8 @@ router.post("/bookSpecific",middleware.authentication,function(req,res){
 										   {returnDate:{$gte:customer.returnDate}}]},
 									{$and:[{issueDate:{$lte:customer.issueDate}},
 										   {returnDate:{$gte:customer.issueDate}}]}
-								]
+								],vehicleno:vehicleno
+						
 							},function(err,found){
 							if(err)
 							{
