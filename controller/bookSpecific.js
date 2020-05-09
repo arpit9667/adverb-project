@@ -1,8 +1,9 @@
 var express=require("express"),
     router=express.Router(),
     Car=require("../models/carDetails.js"),
+	middleware = require("../middleware"),
 	Book=require("../models/bookingDetails.js");
-router.post("/bookSpecific",function(req,res){
+router.post("/bookSpecific",middleware.authentication,function(req,res){
 	var customer_name=req.body.customer_name,
 		customer_phone=req.body.customer_phone,
 		issueDate=req.body.issueDate,
@@ -19,6 +20,10 @@ router.post("/bookSpecific",function(req,res){
 					if(booking.length===0)
 					{
 						customer.car_booked=vehicleno;
+						Car.findOne({vehicleno:vehicleno},function(err,car){
+							car.isBooked=true;
+							car.save();
+						});
 						Book.create(customer,function(err,seat){
 							if(err)
 							{
@@ -40,7 +45,7 @@ router.post("/bookSpecific",function(req,res){
 									{$and:[{issueDate:{$lte:customer.returnDate}},
 										   {returnDate:{$gte:customer.returnDate}}]},
 									{$and:[{issueDate:{$lte:customer.issueDate}},
-										   {returnDate:{$lte:customer.returnDate}}]}
+										   {returnDate:{$gte:customer.issueDate}}]}
 								]
 							},function(err,found){
 							if(err)
@@ -66,6 +71,7 @@ router.post("/bookSpecific",function(req,res){
 								}
 								else
 								{
+									
 									res.send("Booking not possible!!!")
 								}
 							}

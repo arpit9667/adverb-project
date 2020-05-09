@@ -16,6 +16,10 @@ var newSchema=new mongoose.Schema({
 		type:Number,
 		required:true,
 		},
+		isBooked:{
+			type:Boolean,
+			required:true,
+		}
 });
 
 
