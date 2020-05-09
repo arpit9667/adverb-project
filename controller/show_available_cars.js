@@ -19,7 +19,7 @@ router.get("/show_available_cars",middleware.authentication,function(req,res){
 			seating_cap:seating_cap,
 			pickupTime:null};
 		var showcars=[];
-		Car.find({isBooked:false},function(err,available){
+		Car.find({isBooked:false,seatingcap:seating_cap},function(err,available){
 			if(err)
 			{
 				res.send(err);
@@ -54,7 +54,7 @@ router.get("/show_available_cars",middleware.authentication,function(req,res){
 									{
 										c.push(found.car_booked);
 									}
-									Car.find({car_booked:{$nin:c},isBooked:true},function(err,final){
+									Car.find({car_booked:{$nin:c},isBooked:true,seatingcap:seating_cap},function(err,final){
 										if(err)
 										{
 											res.send(err);
