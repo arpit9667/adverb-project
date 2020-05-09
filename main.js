@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 const uri="mongodb+srv://akhil-sharma25:Akhil123%23@cluster0-yxoxf.mongodb.net/test?retryWrites=true&w=majority";
 mongoose.connect(uri,{ useNewUrlParser: true , useUnifiedTopology: true}).then(()=>{console.log('DB Connected')}).catch((err)=>{console.log(err)});
-///passport au
+///passport authentication
 app.use(require("express-session")({
     secret: "Once again Rusty wins cutest dog!",
     resave: false,
